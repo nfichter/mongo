@@ -18,4 +18,5 @@ def build():
 
     for line in courses:
         lineL = line.split(",")
-        
+        db.students.find({"id":lineL[2]})
+
