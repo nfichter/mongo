@@ -35,10 +35,15 @@ def print_averages():
 
     for doc in db.students.find():
         avg = "%.1f"%(doc["average"])
-        s+=doc["name"]+" "*(max_name_len-len(doc["name"]))+" | "+avg+"\n"
+        if len(avg) == 4:
+            s+=doc["name"]+" "*(max_name_len-len(doc["name"]))+" | "+avg+"    | "+str(doc["id"])+"\n"
+        if len(avg) == 5:
+            s+=doc["name"]+" "*(max_name_len-len(doc["name"]))+" | "+avg+"   | "+str(doc["id"])+"\n"
+        if len(avg) == 3:
+            s+=doc["name"]+" "*(max_name_len-len(doc["name"]))+" | "+avg+"     | "+str(doc["id"])+"\n"
 
-    ret  = "Name"+" "*(max_name_len-3)+"| "+"Average\n"
-    ret += "----"+"-"*(max_name_len-3)+"--"+"-------\n"
+    ret  = "Name"+" "*(max_name_len-3)+"| "+"Average | ID\n"
+    ret += "----"+"-"*(max_name_len-3)+"--"+"--------------\n"
 
     ret += s
     
