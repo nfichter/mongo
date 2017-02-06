@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 
 def build():
-    c = MongoClient()
+    c = MongoClient("lisa.stuy.edu")
     db = c["ada"]
     
     f1 = open("courses.csv","r")
@@ -15,7 +15,6 @@ def build():
     for line in peeps:
         if len(line) > 1:
             lineL = line.split(",")
-            print lineL
             dct = {"name":lineL[0],"age":lineL[1],"id":lineL[2],"courses":[]}
             students.append(dct)
     db.students.insert_many(students)
@@ -32,8 +31,7 @@ def build():
                         "$set" : { "courses": courseL},
                     }
                 )
-                print doc
-
+                
     f1.close()
     f2.close()
 
